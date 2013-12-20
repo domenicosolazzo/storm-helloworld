@@ -12,6 +12,7 @@ import java.util.Map;
  * User: domenicosolazzo
  */
 public class HelloWorldBolt extends BaseRichBolt{
+    private int myCount;
     @Override
     public void prepare(Map map, TopologyContext topologyContext, OutputCollector outputCollector) {
 
@@ -19,6 +20,13 @@ public class HelloWorldBolt extends BaseRichBolt{
 
     @Override
     public void execute(Tuple tuple) {
+        String test = tuple.getStringByField("sentence");
+        if("Hello World".equals(test)){
+            myCount++;
+            System.out.println("Found a Hello World! My Count is now: " +
+                Integer.toString(myCount)
+            );
+        }
     }
 
     @Override
